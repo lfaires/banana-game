@@ -7,19 +7,15 @@ export default class Game {
   constructor(
     screenWidth: number,
     screenHeight: number,
-    canvas: HTMLCanvasElement
+    canvas: HTMLCanvasElement,
   ) {
     this.canvas = canvas;
     this.canvas.width = screenWidth;
     this.canvas.height = screenHeight;
-    this.context = this.canvas.getContext("2d");
+    this.context = this.canvas.getContext('2d');
   }
 
-  start(){
+  start() {}
 
-  }
-
-  onMouseMove(event: MouseEvent) {
-    
-  }
+  onMouseMove(event: MouseEvent) {}
 }

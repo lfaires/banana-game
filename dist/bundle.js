@@ -16,7 +16,7 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Game)\n/* harmony export */ });\nclass Game {\n    constructor(screenWidth, screenHeight, canvas) {\n        this.canvas = canvas;\n        this.canvas.width = screenWidth;\n        this.canvas.height = screenHeight;\n        this.context = this.canvas.getContext(\"2d\");\n    }\n    start() {\n    }\n    onMouseMove(event) {\n    }\n}\n\n\n//# sourceURL=webpack://banana/./src/Models/Game.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Game)\n/* harmony export */ });\nclass Game {\n    constructor(screenWidth, screenHeight, canvas) {\n        this.canvas = canvas;\n        this.canvas.width = screenWidth;\n        this.canvas.height = screenHeight;\n        this.context = this.canvas.getContext('2d');\n    }\n    start() { }\n    onMouseMove(event) { }\n}\n\n\n//# sourceURL=webpack://banana/./src/Models/Game.ts?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Models_Game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Models/Game */ \"./src/Models/Game.ts\");\n\nconst screenWidth = document.querySelector('main').offsetWidth;\nconst screenHeight = document.querySelector('main').offsetHeight;\nconst canvas = document.querySelector('#canvas');\nconst game = new _Models_Game__WEBPACK_IMPORTED_MODULE_0__.default(screenWidth, screenHeight, canvas);\ngame.start();\nfunction onMouseMove(event) {\n    game.onMouseMove(event);\n}\nfunction startGame() {\n    game.start();\n}\n\n\n//# sourceURL=webpack://banana/./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Models_Game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Models/Game */ \"./src/Models/Game.ts\");\n\nconst screenWidth = window.innerWidth;\nconst screenHeight = window.innerHeight;\nconst canvas = document.querySelector('#canvas');\nconst game = new _Models_Game__WEBPACK_IMPORTED_MODULE_0__.default(screenWidth, screenHeight, canvas);\ngame.start();\nfunction onMouseMove(event) {\n    //seta pra direita ou esquerda\n    game.onMouseMove(event);\n}\nfunction startGame() {\n    game.start();\n}\n\n\n//# sourceURL=webpack://banana/./src/index.ts?");
 
 /***/ })
 

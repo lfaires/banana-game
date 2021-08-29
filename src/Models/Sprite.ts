@@ -1,3 +1,1 @@
-export default class Sprite {
-    
-}
+export default class Sprite {}

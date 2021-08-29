@@ -1,3 +1,1 @@
-export default class Fall {
-    
-}
+export default class Fall {}

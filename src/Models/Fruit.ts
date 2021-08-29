@@ -1,3 +1,1 @@
-export default class Fruit {
-        
-}
+export default class Fruit {}
