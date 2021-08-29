@@ -1,0 +1,28 @@
+body {
+  background-color: #181820;
+  font-family: 'Lato';
+  font-size: 24px;
+  color: #fff
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 69px;
+  background-color: #000;
+  position: fixed;
+  top:0;
+  left: 0;
+  padding: 0 15px;
+}
+
+#floor {
+  width: 100vw;
+  height: 1px;
+  position: fixed;
+  bottom: 19px;
+  left: 0;
+  background-color: #fff;
+}
