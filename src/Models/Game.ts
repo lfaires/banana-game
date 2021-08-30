@@ -1,3 +1,6 @@
+import Fruit from './Fruit';
+import Bomb from './Bomb';
+import Drawable from './Drawable';
 import Player from './Player';
 
 export default class Game {
@@ -7,6 +10,8 @@ export default class Game {
   context: CanvasRenderingContext2D;
   intervalsIds: number[];
   player: Player;
+  score: number;
+  drawables: Drawable[];
 
   constructor(
     screenWidth: number,
@@ -17,57 +22,88 @@ export default class Game {
     this.canvas.width = screenWidth;
     this.canvas.height = screenHeight;
     this.context = this.canvas.getContext('2d');
+    this.score = 0;
   }
 
-  start() {
-    console.log('iniciou');
+  start(): void {
     this.resetPlayerAndDrawables();
     this.startIntervals();
   }
 
-  onMouseMove(event: MouseEvent) {
+  onMouseMove(event: MouseEvent): void {
+    //change to keyboard
     this.player.moveTo(event.clientX);
   }
 
-  // onKeydownMove(event: KeyboardEvent) {
-  //   this.player.
-  // }
-
-  resetPlayerAndDrawables() {
+  resetPlayerAndDrawables(): void {
     this.player = new Player(
       this.context,
       this.canvas.width / 2,
       this.canvas.height,
     );
+
+    this.drawables = [];
   }
 
-  startIntervals() {
+  updateScore(newScore: number): void {
+    const element = document.querySelector('.score') as HTMLElement;
+
+    this.score = newScore;
+    element.innerText = 'Score: ' + this.score;
+  }
+
+  startIntervals(): void {
     this.clearIntervals();
     const { setInterval } = window;
 
     this.intervalsIds = [
-      setInterval(() => this.gameLoop(), 1000 / 120),
-      // setInterval(() => this.spawnEnemy(), 2000),
-      // setInterval(() => this.spawnFriend(), 1000),
+      setInterval(() => this.gameLoop(), 1000 / 60),
+      setInterval(() => this.spawnBomb(), 2000),
+      setInterval(() => this.spawnFruit(), 1000),
       // setInterval(() => this.spawnSuperFriend(), 2000),
-      // setInterval(() => this.updateScore(this.score + 0.1), 30),
+      setInterval(() => this.updateScore(this.score), 1000),
     ];
   }
 
-  clearIntervals() {
+  clearIntervals(): void {
     this.intervalsIds?.forEach(clearInterval);
   }
 
-  gameLoop() {
+  gameLoop(): void {
+    this.updateState();
     this.renderGame();
   }
 
-  renderGame() {
-    this.clearScreen();
-    this.player.draw();
+  updateState(): void {
+    this.drawables.forEach(drawable => drawable.updateState(this));
   }
 
-  clearScreen() {
+  renderGame(): void {
+    this.clearScreen();
+    this.player.draw();
+    this.drawables.forEach(drawable => drawable.draw());
+  }
+
+  spawnBomb(): void {
+    this.drawables.push(new Bomb(this.canvas, this.context));
+  }
+
+  spawnFruit(): void {
+    this.drawables.push(new Fruit(this.canvas, this.context));
+  }
+
+  clearScreen(): void {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  deleteDrawable(drawable: Drawable): void {
+    this.drawables = this.drawables.filter(d => d !== drawable);
+  }
+
+  endGame(): void {
+    this.clearIntervals();
+    setTimeout(() => {
+      alert(`Fim do jogo! Você fez ${this.score} pontos!`);
+    }, 1500);
   }
 }

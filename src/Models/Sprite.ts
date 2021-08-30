@@ -16,11 +16,9 @@ export default class Sprite {
     this.src = src;
   }
 
-  draw() {
+  draw(): void {
     const img = document.createElement('img');
     img.src = this.src;
-    img.addEventListener('load', () => {
-      this.context.drawImage(img, this.x - 45, this.y - 80, 45, 60);
-    });
+    this.context.drawImage(img, this.x, this.y, 45, 60);
   }
 }
